@@ -1,7 +1,6 @@
 package com.test.RestFullBooker;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -29,7 +28,7 @@ public class Config {
 			driver = new ChromeDriver();
 		}
 	}
-	
+
 	public WebDriver getInitializeWebDriver() throws NullPointerException {
 		if(driver != null) {
 			return driver;

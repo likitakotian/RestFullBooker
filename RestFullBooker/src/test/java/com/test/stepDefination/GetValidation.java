@@ -1,10 +1,15 @@
 package com.test.stepDefination;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
+
 import com.test.RestFullBooker.Config;
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
 
 public class GetValidation extends Config {
 
@@ -12,7 +17,17 @@ public class GetValidation extends Config {
 
 	@Test(enabled = false)
 	public void postAuthenticationValidation() {
-		given().auth().basic("admin", "password123").when().post("https://restful-booker.herokuapp.com/auth").then()
+		
+		Map<String,String> authPayload = new HashMap<String,String>();
+		authPayload.put("username", "admin");
+		authPayload.put("password", "password123");
+		
+		
+		given().auth().basic("admin", "password123")
+			.body(authPayload)
+		.when()
+		.post("https://restful-booker.herokuapp.com/auth")
+		.then()
 				.log().all();
 
 	}
